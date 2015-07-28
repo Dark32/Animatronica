@@ -11,13 +11,14 @@ import org.lwjgl.opengl.GL11;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 
 public class FXHelper {
-		
+
 	public static int wispFxCount = 0;
 	public static int depthIgnoringWispFxCount = 0;
 	public static int sparkleFxCount = 0;
 	public static int fakeSparkleFxCount = 0;
-	
-	
+	public static int lightningCount = 0;
+
+
 	public static void dispatch() {
 		Tessellator tessellator = Tessellator.instance;
 
@@ -37,24 +38,24 @@ public class FXHelper {
 		FXWisp.dispatchQueuedRenders(tessellator);
 		profiler.endSection();
 
-		if(isLightingEnabled)
-			GL11.glEnable(GL11.GL_LIGHTING);
-		GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
-		GL11.glDisable(GL11.GL_BLEND);
-		GL11.glDepthMask(true);
-	}
-	
-	public static final String PREFIX_MOD = "animatronica:";
-	public static final String PREFIX_MISC = PREFIX_MOD + "textures/misc/";
-	public static final String MISC_PARTICLES = PREFIX_MISC + "particles.png";
-	public static final String MISC_WISP_LARGE = PREFIX_MISC + "wispLarge.png";
-	public static final String MISC_WISP_SMALL = PREFIX_MISC + "wispSmall.png";
-	
-	// EffectRenderer
-	public static final String[] PARTICLE_TEXTURES = new String[] { "particleTextures", "field_110737_b", "b" };
-	
-	public static ResourceLocation getParticleTexture() {
-			return ReflectionHelper.getPrivateValue(EffectRenderer.class, null, FXHelper.PARTICLE_TEXTURES);
-		}	
-		
+        if(isLightingEnabled)
+            GL11.glEnable(GL11.GL_LIGHTING);
+        GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
+        GL11.glDisable(GL11.GL_BLEND);
+        GL11.glDepthMask(true);
+    }
+
+    public static final String PREFIX_MOD = "animatronica:";
+    public static final String PREFIX_MISC = PREFIX_MOD + "textures/misc/";
+    public static final String MISC_PARTICLES = PREFIX_MISC + "particles.png";
+    public static final String MISC_WISP_LARGE = PREFIX_MISC + "wispLarge.png";
+    public static final String MISC_WISP_SMALL = PREFIX_MISC + "wispSmall.png";
+
+    // EffectRenderer
+    public static final String[] PARTICLE_TEXTURES = new String[] { "particleTextures", "field_110737_b", "b" };
+
+    public static ResourceLocation getParticleTexture() {
+        return ReflectionHelper.getPrivateValue(EffectRenderer.class, null, FXHelper.PARTICLE_TEXTURES);
+    }
+
 }

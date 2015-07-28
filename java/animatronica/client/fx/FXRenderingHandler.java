@@ -11,7 +11,7 @@ import net.minecraftforge.client.event.RenderWorldLastEvent;
 
 import org.lwjgl.opengl.GL11;
 
-import animatronica.utils.helper.Vector3;
+import animatronica.client.fx.lib.Vector3;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class FXRenderingHandler {
@@ -34,6 +34,7 @@ public class FXRenderingHandler {
 
 		profiler.startSection("animatronica-particles");
 		FXHelper.dispatch();
+		profiler.endStartSection("lightning");
 
 		float frame = event.partialTicks;
 		Entity entity = Minecraft.getMinecraft().thePlayer;
@@ -51,6 +52,8 @@ public class FXRenderingHandler {
 		GL11.glDepthMask(false);
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+
+		FXHelper.lightningCount = 0;
 
 		render.bindTexture(outsideResource);
 		tessellator.startDrawingQuads();
